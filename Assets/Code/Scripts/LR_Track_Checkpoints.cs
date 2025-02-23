@@ -67,4 +67,14 @@ public class LR_Track_Checkpoints : MonoBehaviour
         }
         
     }
+    
+    public int GetNextCheckpointIndex(Transform droneTransform)
+    {
+        return _nextCheckpointSingleIndexList[droneTransformList.IndexOf(droneTransform)];
+    }
+
+    public Transform GetCheckpointTransform(int index)
+    {
+        return _checkpointSingleList[index].transform;
+    }
 }

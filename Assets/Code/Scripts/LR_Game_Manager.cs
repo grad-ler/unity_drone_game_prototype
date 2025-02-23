@@ -8,9 +8,10 @@ public class LR_Game_Manager : MonoBehaviour
     public event EventHandler OnStateChanged;
     
     [SerializeField] private LR_Track_Checkpoints trackCheckpoints;
+    [SerializeField] private int totalCheckpoints;
     
     private bool _goalReached = false;
-    private int _totalCheckpoints = 0;
+    private int _currentCheckpoints = 0;
     private float _raceTime;
     
     private enum State
@@ -102,9 +103,9 @@ public class LR_Game_Manager : MonoBehaviour
     
     private void GameManager_OnPlayerCorrectCheckpoint(object sender, EventArgs e)
     {
-        _totalCheckpoints++;
-        Debug.Log(_totalCheckpoints);
-        if (_totalCheckpoints == 10)
+        _currentCheckpoints++;
+        Debug.Log(_currentCheckpoints);
+        if (_currentCheckpoints == totalCheckpoints)
         {
             _goalReached = true;
         }
