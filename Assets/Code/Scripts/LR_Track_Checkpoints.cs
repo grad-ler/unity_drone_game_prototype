@@ -4,77 +4,42 @@ using UnityEngine;
 
 public class LR_Track_Checkpoints : MonoBehaviour
 {
-    
     public event EventHandler OnPlayerCorrectCheckpoint;
-    public event EventHandler OnPlayerFalseCheckpoint;
-    
-    [SerializeField] private List<Transform> droneTransformList;
-    private List<LR_Checkpoint_Single> _checkpointSingleList;
-    private List<int> _nextCheckpointSingleIndexList;
-    
-    private void Awake()
-    {
-        Transform checkpointsTransform = transform.Find("Checkpoints");
-        _checkpointSingleList = new List<LR_Checkpoint_Single>();
-    
-        foreach (Transform checkpointSingleTransform in checkpointsTransform)
-        {
-            LR_Checkpoint_Single checkpointSingle = checkpointSingleTransform.GetComponent<LR_Checkpoint_Single>();
-            checkpointSingle.SetTrackCheckpoints(this);
-        
-            _checkpointSingleList.Add(checkpointSingle);
 
-            // Make only the first checkpoint visible
-            if (_checkpointSingleList.Count == 1)
-            {
-                checkpointSingle.Show();
-            }
-            else
-            {
-                checkpointSingle.Hide();
-            }
-        }
-    
-        _nextCheckpointSingleIndexList = new List<int>();
-        foreach (Transform droneTransform in droneTransformList)
+    public Transform droneTransform;
+    [SerializeField] private List<LR_Checkpoint_Single> checkpointSingleList;
+
+    private int _nextCheckpointIndex;
+
+    private void Start()
+    {
+        foreach (LR_Checkpoint_Single checkpoint in checkpointSingleList)
         {
-            _nextCheckpointSingleIndexList.Add(0);
+            checkpoint.SetTrackCheckpoints(this);
+            checkpoint.Hide();
         }
+
+        _nextCheckpointIndex = 0;
+        checkpointSingleList[_nextCheckpointIndex].Show();
     }
 
-    public void DroneThroughCheckpoint(LR_Checkpoint_Single checkpointSingle, Transform droneTransform)
+    public void DroneThroughCheckpoint(LR_Checkpoint_Single checkpointSingle)
     {
-        int nextCheckpointSingleIndex = _nextCheckpointSingleIndexList[droneTransformList.IndexOf(droneTransform)];
-        if (_checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex)
+        int checkpointIndex = checkpointSingleList.IndexOf(checkpointSingle);
+
+        if (checkpointIndex == _nextCheckpointIndex)
         {
-            //correct checkpoint
-            Debug.Log("Correct!");
-            LR_Checkpoint_Single correctCheckpointSingle = _checkpointSingleList[nextCheckpointSingleIndex];
-            correctCheckpointSingle.Hide();
-            
-            _nextCheckpointSingleIndexList[droneTransformList.IndexOf(droneTransform)] = (nextCheckpointSingleIndex + 1) % _checkpointSingleList.Count;
-            _checkpointSingleList[_nextCheckpointSingleIndexList[droneTransformList.IndexOf(droneTransform)]].Show();
+            checkpointSingleList[_nextCheckpointIndex].Hide();
+
+            _nextCheckpointIndex = (_nextCheckpointIndex + 1) % checkpointSingleList.Count;
+            checkpointSingleList[_nextCheckpointIndex].Show();
+
             OnPlayerCorrectCheckpoint?.Invoke(this, EventArgs.Empty);
         }
-        else
-        {
-            //false checkpoint
-            Debug.Log("Wrong!");
-            OnPlayerFalseCheckpoint?.Invoke(this, EventArgs.Empty);
-
-            LR_Checkpoint_Single correctCheckpointSingle = _checkpointSingleList[nextCheckpointSingleIndex];
-            correctCheckpointSingle.Show();
-        }
-        
-    }
-    
-    public int GetNextCheckpointIndex(Transform droneTransform)
-    {
-        return _nextCheckpointSingleIndexList[droneTransformList.IndexOf(droneTransform)];
     }
 
-    public Transform GetCheckpointTransform(int index)
+    public Transform GetCheckpointTransform()
     {
-        return _checkpointSingleList[index].transform;
+        return checkpointSingleList[_nextCheckpointIndex].transform;
     }
 }

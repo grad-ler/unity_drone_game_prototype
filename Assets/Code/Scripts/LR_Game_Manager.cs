@@ -44,7 +44,6 @@ public class LR_Game_Manager : MonoBehaviour
         {
             case State.WaitingToStart:
                 _waitingToStartTimer -= Time.deltaTime;
-                Debug.Log(_waitingToStartTimer);
                 if (_waitingToStartTimer <= 0)
                 {
                     _state = State.CountdownToStart;
@@ -53,7 +52,6 @@ public class LR_Game_Manager : MonoBehaviour
                 break;
             case State.CountdownToStart:
                 _countdownToStartTimer -= Time.deltaTime;
-                Debug.Log(_countdownToStartTimer);
                 if (_countdownToStartTimer <= 0)
                 {
                     _state = State.GamePlaying;
@@ -104,7 +102,7 @@ public class LR_Game_Manager : MonoBehaviour
     private void GameManager_OnPlayerCorrectCheckpoint(object sender, EventArgs e)
     {
         _currentCheckpoints++;
-        Debug.Log(_currentCheckpoints);
+        Debug.Log("Current checkpoint: " + _currentCheckpoints);
         if (_currentCheckpoints == totalCheckpoints)
         {
             _goalReached = true;

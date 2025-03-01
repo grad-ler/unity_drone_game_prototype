@@ -31,7 +31,6 @@ public class LR_Arrow_Indicator : MonoBehaviour
     
     private void UpdateTargetCheckpoint()
     {
-        int nextCheckpointIndex = trackCheckpoints.GetNextCheckpointIndex(droneTransform);
-        _currentTargetCheckpoint = trackCheckpoints.GetCheckpointTransform(nextCheckpointIndex);
+        _currentTargetCheckpoint = trackCheckpoints.GetCheckpointTransform();
     }
 }
