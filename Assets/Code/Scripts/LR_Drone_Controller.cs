@@ -20,10 +20,10 @@ namespace DroneGame
         private LR_Drone_Inputs _input;
         private List<IEngine> _engines = new List<IEngine>();
 
-        private float finalPitch;
-        private float finalRoll;
-        private float yaw;
-        private float finalYaw;
+        private float _finalPitch;
+        private float _finalRoll;
+        private float _yaw;
+        private float _finalYaw;
         
         #endregion
     
@@ -48,7 +48,6 @@ namespace DroneGame
     
         protected virtual void HandleEngines()
         {
-            //Rb.AddForce(Vector3.up * (Rb.mass * Physics.gravity.magnitude));
             foreach (IEngine engine in _engines)
             {
                 engine.UpdateEngine(Rb, _input);
@@ -57,32 +56,39 @@ namespace DroneGame
 
         protected virtual void HandleControls()
         {
-                float pitch = _input.CyclicValue.y * minMaxPitch;
-                float roll = -_input.CyclicValue.x * minMaxRoll;
-                yaw += _input.PedalValue * yawPower;
+            // Read player input
+            float pitchInput = _input.CyclicValue.y;
+            float rollInput = -_input.CyclicValue.x;
+            float yawInput = _input.PedalValue;
 
-                finalPitch = Mathf.Lerp(finalPitch, pitch, lerpSpeed * Time.deltaTime);
-                finalRoll = Mathf.Lerp(finalRoll, roll, lerpSpeed * Time.deltaTime);
-                finalYaw = Mathf.Lerp(finalYaw, yaw, lerpSpeed * Time.deltaTime);
+            // Calculate desired pitch and roll angles
+            float targetPitch = pitchInput * minMaxPitch;
+            float targetRoll = rollInput * minMaxRoll;
 
-                // Smooth camera rotation
-                if (cameraTransform != null)
-                {
-                    // Target forward direction for the camera
-                    Vector3 targetForward = transform.forward;
-                    targetForward.y = 0; // Neutralize pitch (vertical tilt)
-                    targetForward.Normalize();
+            // Smoothly interpolate pitch and roll
+            _finalPitch = Mathf.Lerp(_finalPitch, targetPitch, lerpSpeed * Time.deltaTime);
+            _finalRoll = Mathf.Lerp(_finalRoll, targetRoll, lerpSpeed * Time.deltaTime);
 
-                    // Calculate target rotation
-                    Quaternion targetRotation = Quaternion.LookRotation(targetForward, Vector3.up);
+            // Accumulate yaw over time
+            _yaw += yawInput * yawPower * Time.deltaTime;
 
-                    // Smoothly interpolate to target rotation
-                    cameraTransform.rotation = Quaternion.Slerp(cameraTransform.rotation, targetRotation, lerpSpeed * Time.deltaTime);
-                }
+            // **FIX**: Combine rotation in the original way
+            Quaternion rot = Quaternion.Euler(_finalPitch, _yaw, _finalRoll);
+    
+            // Apply the final rotation
+            Rb.MoveRotation(rot);
 
-                Quaternion rot = Quaternion.Euler(finalPitch, finalYaw, finalRoll);
-                Rb.MoveRotation(rot);    
+            // Smooth camera adjustment (same as before)
+            if (cameraTransform != null)
+            {
+                Vector3 targetForward = transform.forward;
+                targetForward.y = 0; // Keep camera level
+                targetForward.Normalize();
+
+                cameraTransform.rotation = Quaternion.Slerp(cameraTransform.rotation, Quaternion.LookRotation(targetForward, Vector3.up), lerpSpeed * Time.deltaTime);
+            }
         }
+        
         #endregion
     }
 }
