@@ -3661,7 +3661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5676187642254488042, guid: 3a3c6a3c720d5de4e81b517afcaeb5b3, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Keyboard&Mouse_P2
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5676187642254488042, guid: 3a3c6a3c720d5de4e81b517afcaeb5b3, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
@@ -4343,7 +4343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5676187642254488042, guid: 3a3c6a3c720d5de4e81b517afcaeb5b3, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Keyboard&Mouse
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5676187642254488042, guid: 3a3c6a3c720d5de4e81b517afcaeb5b3, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
