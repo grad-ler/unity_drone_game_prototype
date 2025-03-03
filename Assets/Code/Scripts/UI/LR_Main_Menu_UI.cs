@@ -1,9 +1,7 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenuUI : MonoBehaviour
+public class LR_Main_Menu_UI : MonoBehaviour
 {
 
     [SerializeField] private Button playButton;

@@ -3659,6 +3659,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5676187642254488042, guid: 3a3c6a3c720d5de4e81b517afcaeb5b3, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Keyboard&Mouse_P2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676187642254488042, guid: 3a3c6a3c720d5de4e81b517afcaeb5b3, type: 3}
+      propertyPath: m_NeverAutoSwitchControlSchemes
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5828807854969837838, guid: 3a3c6a3c720d5de4e81b517afcaeb5b3, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -4333,6 +4341,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5676187642254488042, guid: 3a3c6a3c720d5de4e81b517afcaeb5b3, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Keyboard&Mouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676187642254488042, guid: 3a3c6a3c720d5de4e81b517afcaeb5b3, type: 3}
+      propertyPath: m_NeverAutoSwitchControlSchemes
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5828807854969837838, guid: 3a3c6a3c720d5de4e81b517afcaeb5b3, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -4907,7 +4923,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2077900174}
   - component: {fileID: 2077900173}
-  - component: {fileID: 2077900175}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4949,50 +4964,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2077900175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2077900172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_NotificationBehavior: 0
-  m_MaxPlayerCount: 2
-  m_AllowJoining: 0
-  m_JoinBehavior: 1
-  m_PlayerJoinedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_PlayerLeftEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_JoinAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Join
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 4098e028-d266-4dc8-a45e-64536891f756
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 656190141722781740, guid: 3a3c6a3c720d5de4e81b517afcaeb5b3, type: 3}
-  m_SplitScreen: 1
-  m_MaintainAspectRatioInSplitScreen: 0
-  m_FixedNumberOfSplitScreens: -1
-  m_SplitScreenRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
 --- !u!1 &2081122283
 GameObject:
   m_ObjectHideFlags: 0
