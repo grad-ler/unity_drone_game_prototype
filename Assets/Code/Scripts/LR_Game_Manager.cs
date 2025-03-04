@@ -1,4 +1,5 @@
 using System;
+using DroneGame;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,7 +13,7 @@ public class LR_Game_Manager : MonoBehaviour
     [SerializeField] private int totalCheckpoints;
     [SerializeField] private float waitingToStartTimer = 1f;
     [SerializeField] private float countdownToStartTimer = 3f;
-    [SerializeField] private float timeAfterFirstFinish = 5f; // Time left for other player after first one finishes
+    [SerializeField] private float timeAfterFirstFinish = 5f;
     
     private bool[] _goalReached;
     private int[] _currentCheckpoints;
@@ -157,7 +158,7 @@ public class LR_Game_Manager : MonoBehaviour
         }
     }
 
-    // THIS IS THE CRITICAL NEW METHOD TO FIX THE DNF ISSUE
+
     private void MarkUnfinishedPlayersAsDNF()
     {
         for (int i = 0; i < _goalReached.Length; i++)
@@ -199,8 +200,17 @@ public class LR_Game_Manager : MonoBehaviour
         if (playerIndex >= 0 && playerIndex < _playerInputs.Length && _playerInputs[playerIndex] != null)
         {
             _playerInputs[playerIndex].DeactivateInput();
+        
+            // Shut down engines
+            LR_Drone_Controller droneController = _playerInputs[playerIndex].GetComponent<LR_Drone_Controller>();
+            if (droneController != null)
+            {
+                droneController.ShutdownEngines();
+            }
         }
     }
+
+
 
     private void ResetRace()
     {

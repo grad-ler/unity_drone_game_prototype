@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,30 +14,21 @@ namespace DroneGame
     
         #endregion
     
-        #region Main Methods
-    
-        void Update()
-        {
-
-        }
-    
-        #endregion
-    
         #region Input Methods
 
-        private void OnCyclic(InputValue value)
+        public void OnCyclic(InputAction.CallbackContext context)
         {
-            CyclicValue = value.Get<Vector2>();
+            CyclicValue = context.ReadValue<Vector2>();
         }
 
-        private void OnPedals(InputValue value)
+        public void OnPedals(InputAction.CallbackContext context)
         {
-            PedalValue = value.Get<float>();
+            PedalValue = context.ReadValue<float>();
         }
 
-        private void OnCollective(InputValue value)
+        public void OnCollective(InputAction.CallbackContext context)
         {
-            CollectiveValue = value.Get<float>();
+            CollectiveValue = context.ReadValue<float>();
         }
     
         #endregion

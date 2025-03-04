@@ -6,6 +6,6 @@ namespace DroneGame
     {
         void InitEngine();
         void UpdateEngine(Rigidbody rb, LR_Drone_Inputs input);
+        void ShutdownEngine(); // New method
     }
-   
 }

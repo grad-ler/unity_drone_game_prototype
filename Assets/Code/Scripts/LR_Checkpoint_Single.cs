@@ -14,8 +14,6 @@ public class LR_Checkpoint_Single : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (_trackCheckpoints == null) return;
-
-        Debug.Log("other: " + other.name + " | gameObject: " + gameObject.name);
         
         if (other.TryGetComponent<PlayerInput>(out PlayerInput player))
         {

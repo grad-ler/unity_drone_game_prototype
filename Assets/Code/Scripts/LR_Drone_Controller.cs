@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 namespace DroneGame
 {
@@ -33,7 +34,29 @@ namespace DroneGame
         {
             _input = GetComponent<LR_Drone_Inputs>();
             _engines = GetComponentsInChildren<IEngine>().ToList<IEngine>();
+    
+            PlayerInput playerInput = GetComponent<PlayerInput>();
+
+            if (Gamepad.current != null && gameObject.name == "Player_02") 
+            {
+                // If a gamepad is connected, assign gamepad controls
+                playerInput.SwitchCurrentControlScheme("Gamepad", Gamepad.current);
+                Debug.Log(gameObject.name + " switched to Gamepad controls");
+            }
+            else if (gameObject.name == "Player_01")
+            {
+                // Default to keyboard for Player_01
+                playerInput.SwitchCurrentControlScheme("KeyboardLeft", Keyboard.current);
+                Debug.Log(gameObject.name + " switched to KeyboardLeft");
+            }
+            else if (gameObject.name == "Player_02")
+            {
+                // Default to keyboard for Player_02
+                playerInput.SwitchCurrentControlScheme("KeyboardRight", Keyboard.current);
+                Debug.Log(gameObject.name + " switched to KeyboardRight");
+            }
         }
+
         
         #endregion
     
@@ -72,7 +95,7 @@ namespace DroneGame
             // Accumulate yaw over time
             _yaw += yawInput * yawPower * Time.deltaTime;
 
-            // **FIX**: Combine rotation in the original way
+            // Combine rotation
             Quaternion rot = Quaternion.Euler(_finalPitch, _yaw, _finalRoll);
     
             // Apply the final rotation
@@ -86,6 +109,14 @@ namespace DroneGame
                 targetForward.Normalize();
 
                 cameraTransform.rotation = Quaternion.Slerp(cameraTransform.rotation, Quaternion.LookRotation(targetForward, Vector3.up), lerpSpeed * Time.deltaTime);
+            }
+        }
+        
+        public void ShutdownEngines()
+        {
+            foreach (IEngine engine in _engines)
+            {
+                engine.ShutdownEngine();
             }
         }
         

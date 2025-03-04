@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class LR_Arrow_Indicator : MonoBehaviour
 {
-    [SerializeField] private Transform droneTransform; // The player's drone
-    [SerializeField] private LR_Track_Checkpoints trackCheckpoints; // Reference to the checkpoint manager
+    [SerializeField] private Transform droneTransform;
+    [SerializeField] private LR_Track_Checkpoints trackCheckpoints;
     
     private Transform _currentTargetCheckpoint;
     
