@@ -54,7 +54,7 @@ public class LR_Player_Statistics_UI : MonoBehaviour
             HideAll();
         }
     }
-w
+
     private void ShowRaceTime(float raceTime)
     {
         if (raceTimerText != null)
