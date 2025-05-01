@@ -100,6 +100,12 @@ public class LR_Game_Manager : MonoBehaviour
                 break;
                 
             case State.GamePlaying:
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    LR_Loader.Load(LR_Loader.Scene.Main_Menu_Scene);
+                }
+                
                 // Track race time for each active player
                 for (int i = 0; i < _raceTime.Length; i++)
                 {
