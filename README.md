@@ -63,6 +63,7 @@
 - Various 3d assets by Synthy Studios - https://syntystore.com
 ---
 Project by Leander Renholzberger (gradler)
+
 Developed as part of a university software engineering course.
 
 
