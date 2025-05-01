@@ -56,6 +56,13 @@
 ![3](https://github.com/user-attachments/assets/9570e911-eac9-414b-b48c-54eff9240258)
 ### Race Over Interace
 ![1232](https://github.com/user-attachments/assets/63c51b0c-f517-4871-8e73-0f3f7563dc1a)
-## 🙌 Credits
-Project lead and development by Leander Renholzberger (gradler)
+## 🙌 References
+- Unity Drone Controller Tutorial by Indie-Pixel - https://youtu.be/vUyAev7YAV8?list=PL5V9qxkY_RnLyWVtxIbWY0ihiyOaAYoRr
+- Split Screen Game Tutorial by One Wheel Studio - https://onewheelstudio.com/blog/2022/2/3/split-screen-multi-player-with-unitys-new-input-system
+- Unlit racing drone by pebegou - https://www.fab.com/listings/94279cd0-b30f-4bdd-b56f-a7e09fb78573
+- Various 3d assets by Synthy Studios - https://syntystore.com
+---
+Project by Leander Renholzberger (gradler)
 Developed as part of a university software engineering course.
+
+
