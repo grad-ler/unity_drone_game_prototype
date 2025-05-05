@@ -54,7 +54,7 @@
 ![Drone_Racer_Main_Menu_13](https://github.com/user-attachments/assets/60f3fc48-2831-424d-9e57-13a2e2143cfc)
 ### In-game Controls Overview
 ![3](https://github.com/user-attachments/assets/9570e911-eac9-414b-b48c-54eff9240258)
-### Race Over Interace
+### Race Over Interface
 ![1232](https://github.com/user-attachments/assets/63c51b0c-f517-4871-8e73-0f3f7563dc1a)
 ## 🙌 References
 - Unity Drone Controller Tutorial by Indie-Pixel - https://youtu.be/vUyAev7YAV8?list=PL5V9qxkY_RnLyWVtxIbWY0ihiyOaAYoRr
